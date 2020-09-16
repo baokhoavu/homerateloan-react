@@ -63,12 +63,22 @@ const Container = styled.div`
     }
 `;
 
+const Green = styled.div`
+    background: rgba(0, 177, 106, 1);
+    min-height: 40px;
+    line-height: 2.5;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+`;
+
 const prevStyle = { background: "#33c3f0", "border-width": "2px" };
 const nextStyle = { background: "#33c3f0", "border-width": "2px" };
 
 function App() {
     return (
         <div className="App">
+            <Green>Bad Credit and Stated Income Programs Available.</Green>
             <header className="App-header">
                 <div className="container">
                     <BrowserRouter basename={"/"}>
@@ -84,8 +94,8 @@ function App() {
                             <Route component={Error} />
                         </Switch>
                     </BrowserRouter>
-                    <Container>
-                        {/* <div className="container app-footer">
+                    {/* <Container>
+                        <div className="container app-footer">
                             <h6>
                                 Press 'Enter' or click on progress bar for next
                                 step.
@@ -97,8 +107,8 @@ function App() {
                             >
                                 github
                             </a>
-                        </div> */}
-                    </Container>
+                        </div>
+                    </Container> */}
                 </div>
             </header>
         </div>
