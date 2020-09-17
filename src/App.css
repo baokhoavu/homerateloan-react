@@ -37,3 +37,27 @@
 		transform: rotate(360deg);
 	}
 }
+
+button {
+	display: inline-block;
+	height: 38px;
+	padding: 0 30px;
+	color: #fff;
+	border: .05rem solid #5755d9;
+	background: #fff !important;
+	color: #5755d9 !important;
+	text-align: center;
+	font-size: 11px;
+	text-transform: uppercase;
+	text-decoration: none;
+	margin-bottom: 25px;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:nth-child(2) {
+	background: #5755d9 !important;
+	color: #fff !important;
+}

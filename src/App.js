@@ -10,6 +10,7 @@ import StepOne from "./components/step-01.js";
 import StepTwo from "./components/step-02.js";
 import StepThree from "./components/step-03.js";
 import StepFour from "./components/step-04.js";
+import Footer from "./components/Footer.js";
 
 const steps = [
     { component: <StepOne /> },
@@ -94,6 +95,7 @@ function App() {
                             <Route component={Error} />
                         </Switch>
                     </BrowserRouter>
+                    <Footer></Footer>
                     {/* <Container>
                         <div className="container app-footer">
                             <h6>

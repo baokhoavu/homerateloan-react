@@ -1,37 +1,50 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const Step = styled.div`
+    min-height: 200px;
+    margin-top: 100px;
+
+    h2 {
+        color: #000 !important;
+    }
+    .columns {
+        border: 1px solid #000;
+        width: 500px;
+        margin: 0 auto;
+        padding: 15px 25px 25px;
+
+        input {
+            width: 485px;
+            padding: 5px;
+            border: 1px solid #000;
+            border-radius: 0;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+`;
+
 export default () => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [name, setName] = useState("");
 
     return (
-        <div>
+        <Step>
+            <h2>What is your name?</h2>
             <div className="row">
                 <div className="six columns">
-                    <label>First Name</label>
                     <input
                         className="u-full-width"
-                        placeholder="First Name"
+                        placeholder="Jane Doe"
                         type="text"
-                        onChange={(e) => setFirstName(e.target.value)}
-                        value={firstName}
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
                         autoFocus
                     />
                 </div>
             </div>
-            <div className="row">
-                <div className="six columns">
-                    <label>Last Name</label>
-                    <input
-                        className="u-full-width"
-                        placeholder="Last Name"
-                        type="text"
-                        onChange={(e) => setLastName(e.target.value)}
-                        value={lastName}
-                    />
-                </div>
-            </div>
-        </div>
+        </Step>
     );
 };

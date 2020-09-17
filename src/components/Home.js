@@ -1,77 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const FirstPage = styled.div``;
-
-const Gray = styled.div`
-    background: rgba(218, 223, 225, 1);
-    min-height: 400px;
-    flex-wrap: wrap;
-    display: flex;
-    max-width: 1200px;
-`;
-
-const GrayBox = styled.div`
-    height: 300px;
-    width: 100%;
-    // max-width: 1200px;
-    flex-wrap: wrap;
-    display: flex;
-
-    > div {
-        flex: 0 0 33.33%;
-        width: 400px;
-        margin-top: 25px;
-
-        > h2,
-        > h3,
-        > p {
-            margin: 0;
-        }
-
-        h2 {
-            font-size: 24px;
-            color: rgba(3, 166, 120, 1);
-        }
-
-        h3 {
-            font-size: 20px;
-            color: #000;
-        }
-
-        > p {
-            font-size: 18px;
-            color: #000;
-        }
-    }
-`;
-
-const GrayHead = styled.div`
-    &:nth-of-type(1) {
-        width: 100%;
-        min-width: 1200px;
-        max-height: 100px;
-        padding-top: 25px;
-
-        a {
-            display: inline-block;
-
-            img {
-                width: 100%;
-                height: auto;
-                max-width: 250px;
-            }
-        }
-    }
-
-    &:nth-of-type(3) {
-        padding: 0 50px 25px;
-
-        p {
-            font-size: 24px;
-        }
-    }
-`;
 
 const BoxContainer = styled.div`
     flex-wrap: wrap;
@@ -83,16 +14,42 @@ const Box = styled.div`
     flex: 0 0 33.33%;
     width: 400px;
 
-    div {
+    > div {
         height: 500px;
         padding: 0 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+
+        > div {
+            position: relative;
+            top: 13rem;
+
+            a {
+                color: #fff;
+                text-decoration: none;
+                background: green;
+                border-radius: 25px;
+                padding: 0 25px 5px;
+            }
+        }
+    }
+
+    &:nth-child(1) > div > div {
+        position: relative;
+        top: 10.75rem;
+
+        h2 {
+            height: 135px;
+        }
     }
 
     h2 {
-        font-size: 30px;
+        font-size: 28px;
         color: #fff;
-        position: relative;
-        top: 13rem;
+        height: 100px;
+
+        span {
+            color: rgba(228, 120, 51, 1);
+        }
     }
 
     &:nth-child(1) div {
@@ -115,78 +72,34 @@ export default class Home extends Component {
                 <BoxContainer>
                     <Box>
                         <div>
-                            <h2>I want a New Mortgage Loan on my property.</h2>
+                            <div>
+                                <h2>
+                                    I want a <br />
+                                    <span>New Mortgage Loan</span>
+                                    <br />
+                                    on my property.
+                                </h2>
+                                <Link to="/steps">Continue</Link>
+                            </div>
                         </div>
                     </Box>
                     <Box>
                         <div>
-                            <h2>I'm refinancing to Cash Out.</h2>
+                            <div>
+                                <h2>I'm refinancing to Cash Out.</h2>
+                                <Link to="/steps">Continue</Link>
+                            </div>
                         </div>
                     </Box>
                     <Box>
                         <div>
-                            <h2>I'm refinancing to Pay Off Debt.</h2>
+                            <div>
+                                <h2>I'm refinancing to Pay Off Debt.</h2>
+                                <Link to="/steps">Continue</Link>
+                            </div>
                         </div>
                     </Box>
                 </BoxContainer>
-                <Gray>
-                    <GrayHead>
-                        <a href="/">
-                            <img src="https://homeratesonline.com/static/img/Logo.png" />
-                        </a>
-                    </GrayHead>
-                    <GrayBox>
-                        <div>
-                            <h2>Afiliations</h2>
-                            <h3>Phone</h3>
-                            <p>(800)996-8196 Ex 101</p>
-                            <h3>Email</h3>
-                            <p>info@homeratestoday.com</p>
-                            <h3>Address</h3>
-                            <p>
-                                135 S State College Blvd
-                                <br />
-                                Brea, CA 92821
-                            </p>
-                        </div>
-                        <div>
-                            <h2>Contact</h2>
-                            <h3>Phone</h3>
-                            <p>(800)996-8196 Ex 101</p>
-                            <h3>Email</h3>
-                            <p>info@homeratestoday.com</p>
-                            <h3>Address</h3>
-                            <p>
-                                135 S State College Blvd
-                                <br />
-                                Brea, CA 92821
-                            </p>
-                        </div>
-                        <div>
-                            <h2>Licensing</h2>
-                            <h3>Phone</h3>
-                            <p>(800)996-8196 Ex 101</p>
-                            <h3>Email</h3>
-                            <p>info@homeratestoday.com</p>
-                            <h3>Address</h3>
-                            <p>
-                                135 S State College Blvd
-                                <br />
-                                Brea, CA 92821
-                            </p>
-                        </div>
-                    </GrayBox>
-                    <GrayHead>
-                        <p>
-                            HomeRatesOnline.com is not a Financial Service
-                            Company, We do not offer loans or charge fees to you
-                            for the information we provide. This website is for
-                            informational purposes only. Please call or submit
-                            your information to be directed to a licensed
-                            professional in your area.
-                        </p>
-                    </GrayHead>
-                </Gray>
             </FirstPage>
         );
     }
