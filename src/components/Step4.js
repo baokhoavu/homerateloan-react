@@ -11,11 +11,11 @@ export default () => {
                     <ul className="docs-terms">
                         <li>
                             I have read and accepted the{" "}
-                            <a href="#">User Agreement</a>
+                            {/* <a href="#">User Agreement</a> */}
                         </li>
                         <li>
                             I have read and accepted the{" "}
-                            <a href="#">Privacy Policy</a>
+                            {/* <a href="#">Privacy Policy</a> */}
                         </li>
                         <li>I am at least 18 years old</li>
                     </ul>

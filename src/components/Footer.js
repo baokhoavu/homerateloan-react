@@ -1,14 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Gray = styled.div`
-    background: rgba(218, 223, 225, 1);
-    min-height: 400px;
-    flex-wrap: wrap;
-    display: flex;
-    max-width: 1200px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    background: rgba(238, 238, 238, 1);
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    > div {
+        min-height: 400px;
+        flex-wrap: wrap;
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 `;
 
 const GrayBox = styled.div`
@@ -86,52 +94,76 @@ const GrayHead = styled.div`
 export default () => {
     return (
         <Gray>
-            <GrayHead>
-                <a href="/">
-                    <img src="https://homeratesonline.com/static/img/Logo.png" />
-                </a>
-            </GrayHead>
-            <GrayBox>
-                <div>
-                    <h2>Afiliations</h2>
-                    <img src="https://homeratesonline.com/static/img/Zillow.jpg" />
-                    <br />
-                    <img src="https://homeratesonline.com/static/img/NAHB.png" />
-                    <br />
-                    <img src="https://homeratesonline.com/static/img/Realtor.jpg" />
-                    <br />
-                    <img src="https://homeratesonline.com/static/img/Trulia.jpg" />
-                </div>
-                <div>
-                    <h2>Contact</h2>
-                    <h3>Phone</h3>
-                    <p>(800)996-8196 Ex 101</p>
-                    <h3>Email</h3>
-                    <p>info@homeratestoday.com</p>
-                    <h3>Address</h3>
-                    <p>
-                        135 S State College Blvd
+            <div>
+                <GrayHead>
+                    <a href="/">
+                        <img
+                            alt=""
+                            src="https://homeratesonline.com/static/img/Logo.png"
+                        />
+                    </a>
+                </GrayHead>
+                <GrayBox>
+                    <div>
+                        <h2>Afiliations</h2>
+                        <img
+                            alt=""
+                            src="https://homeratesonline.com/static/img/Zillow.jpg"
+                        />
                         <br />
-                        Brea, CA 92821
+                        <img
+                            alt=""
+                            src="https://homeratesonline.com/static/img/NAHB.png"
+                        />
+                        <br />
+                        <img
+                            alt=""
+                            src="https://homeratesonline.com/static/img/Realtor.jpg"
+                        />
+                        <br />
+                        <img
+                            alt=""
+                            src="https://homeratesonline.com/static/img/Trulia.jpg"
+                        />
+                    </div>
+                    <div>
+                        <h2>Contact</h2>
+                        <h3>Phone</h3>
+                        <p>(800)996-8196 Ex 101</p>
+                        <h3>Email</h3>
+                        <p>info@homeratestoday.com</p>
+                        <h3>Address</h3>
+                        <p>
+                            135 S State College Blvd
+                            <br />
+                            Brea, CA 92821
+                        </p>
+                    </div>
+                    <div>
+                        <h2>Licensing</h2>
+                        <img
+                            alt=""
+                            src="https://homeratesonline.com/static/img/Eho.png"
+                        />
+                        <br />
+                        <img
+                            alt=""
+                            src="https://homeratesonline.com/static/img/Ehl.png"
+                        />
+                        <br />
+                    </div>
+                </GrayBox>
+                <GrayHead>
+                    <p>
+                        HomeRatesOnline.com is not a Financial Service Company,
+                        We do not offer loans or charge fees to you for the
+                        information we provide. This website is for
+                        informational purposes only. Please call or submit your
+                        information to be directed to a licensed professional in
+                        your area.
                     </p>
-                </div>
-                <div>
-                    <h2>Licensing</h2>
-                    <img src="https://homeratesonline.com/static/img/Eho.png" />
-                    <br />
-                    <img src="https://homeratesonline.com/static/img/Ehl.png" />
-                    <br />
-                </div>
-            </GrayBox>
-            <GrayHead>
-                <p>
-                    HomeRatesOnline.com is not a Financial Service Company, We
-                    do not offer loans or charge fees to you for the information
-                    we provide. This website is for informational purposes only.
-                    Please call or submit your information to be directed to a
-                    licensed professional in your area.
-                </p>
-            </GrayHead>
+                </GrayHead>
+            </div>
         </Gray>
     );
 };

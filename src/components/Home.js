@@ -8,6 +8,9 @@ const BoxContainer = styled.div`
     flex-wrap: wrap;
     display: flex;
     max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    top: 75px;
 `;
 
 const Box = styled.div`
