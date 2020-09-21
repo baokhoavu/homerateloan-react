@@ -6,9 +6,9 @@ const Gray = styled.div`
     width: 100vw;
     background: rgba(238, 238, 238, 1);
     // box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    // position: absolute;
+    // left: 0;
+    // bottom: 0;
 
     > div {
         min-height: 400px;

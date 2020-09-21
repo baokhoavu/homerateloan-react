@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+// import { subscriber, messageService } from "./messageService.js";
+// import { BehaviorSubject } from 'rxjs';
 
 const Step = styled.div`
-    background: rgba(238, 238, 238, 1);
-    height: 80vh;
+    min-height: calc(100vh - 628px);
 
     > div {
         background: #fff;
@@ -15,6 +16,18 @@ const Step = styled.div`
             padding: 125px 0;
             margin: 0 auto;
             max-width: 1280px;
+
+			h1 {
+				color: #000 !important;
+				margin: 25px auto;
+				font-size: 35px;
+				letter-spacing: 1px
+			}
+
+			p {
+				color: #000;
+				margin: 0;
+			}
 
             > div {
                 border: 0.05rem solid #dadee4;
@@ -42,20 +55,12 @@ const Step = styled.div`
 
 				}
 
-                h1 {
-                    color: #000;
-                    margin: 0;
-                    font-size: 30px;
-                }
-
-                p {
-                    color: #000;
-                    margin: 0;
-                }
+                
 
                 button {
                     display: inline-block;
                     height: 38px;
+					width: 49%;
                     padding: 0 30px;
                     border: 0.05rem solid #5755d9;
                     color: #fff !important;
@@ -106,17 +111,20 @@ export default class extends Component {
         let fields = this.state.fields;
         let errors = {};
 
-        // console.log(this.state.fields[name]);
         console.log(this.state.fields["name"]);
 
         //Name
         if (
             fields["name"] === "" ||
             fields["name"].length === 0 ||
-            typeof fields["name"] !== "undefined"
+            typeof fields["name"] === "undefined"
         ) {
             this.setState({ formIsValid: false });
             errors["name"] = "Name is required";
+            console.log("a route");
+        } else {
+            this._next();
+            console.log("b route");
         }
 
         //Email
@@ -159,6 +167,14 @@ export default class extends Component {
         window.location = "/step2";
     }
 
+    get nextButton() {
+        return (
+            <button type="button" onClick={this.onClick}>
+                Next
+            </button>
+        );
+    }
+
     // componentWillMount() {
     //     console.log(this.state.currentStep);
     // }
@@ -186,12 +202,8 @@ export default class extends Component {
                                     {this.state.errors["name"]}
                                 </span>
                                 <div>
-                                    <button
-                                        onClick={this.onClick}
-                                        type="button"
-                                    >
-                                        Next
-                                    </button>
+                                    {this.previousButton}
+                                    {this.nextButton}
                                 </div>
                             </div>
                         </form>

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const FirstPage = styled.div``;
+const FirstPage = styled.div`
+    min-height: calc(100vh - 628px);
+`;
 
 const BoxContainer = styled.div`
     flex-wrap: wrap;
