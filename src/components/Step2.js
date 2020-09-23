@@ -1,297 +1,268 @@
-import React, { Component, setState } from "react";
+// import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
+import { Field, reduxForm } from "redux-form";
+import validate from "./validate";
+
+const Form = styled.form``;
 
 const Step = styled.div`
     min-height: calc(100vh - 628px);
 
     > div {
         background: #fff;
+        margin: 0 auto;
+        max-width: 850px;
+        position: relative;
+        top: 175px;
+
+		h1 {
+			color: #000 !important;
+			margin: 25px auto;
+			font-size: 35px;
+			letter-spacing: 1px
+		}
 
         form {
+            border: 0.05rem solid #dadee4;
             background: #fff;
-            position: relative;
-            top: 15%;
-            padding: 125px 0;
-            margin: 0 auto;
+            margin: 50px auto 0;
             max-width: 1280px;
-
-			h1 {
-				color: #000 !important;
-				margin: 25px auto;
-				font-size: 35px;
-				letter-spacing: 1px
-			}
 
 			p {
 				color: #000;
 				margin: 0;
 			}
 
-            > div {
-                border: 0.05rem solid #dadee4;
-                margin: 0 auto;
-                max-width: 850px;
+			> div {
+				// border: 0.05rem solid #dadee4;
+				// margin: 0 auto;
+				// max-width: 850px;
 
-				&:nth-child(2) {
-					border-bottom: 0;
-				}
-
-				&:nth-child(3) {
-					border-top: 0;
-				}
-
-                select {
+				input {
 					width: 100%;
-					max-width: 825px;
-					height: 35px;
-					padding: 0px 5px;
+					max-width: 800px;
+					height: 25px;
+					padding: 0 7.5px;
 					border: 0.05rem solid #dadee4;
 					outline: none;
 					border-radius: 0;
-					font-size: 16px;
-    				letter-spacing: 0.25px;
 
-                    &:focus {
-                        outline: none;
-                    }
-                }
+					&:focus {
+						outline: none;
+					}
+				}
 
-				
 				span {
 					color: red;
 					font-size: 20px;
-
 				}
 
-                
+				button {
+					display: inline-block;
+					height: 38px;
+					width: 49%;
+					padding: 0 30px;
+					border: 0.05rem solid #5755d9;
+					color: #fff !important;
+					text-align: center;
+					font-size: 11px;
+					text-transform: uppercase;
+					text-decoration: none;
+					margin-bottom: 25px;
+					margin-top: 25px;
+					background: #5755d9 !important;
 
-                button {
-                    display: inline-block;
-                    height: 38px;
-					width: 48.5%;
-                    padding: 0 30px;
-                    border: 0.05rem solid #5755d9;
-                    text-align: center;
-                    font-size: 11px;
-                    text-transform: uppercase;
-                    text-decoration: none;
-                    margin: 0 auto 15px;
-
-					&:nth-child(1) {
-                    	background: #fff !important;
-						color: #5755d9;
-
-						&:hover {
-							cursor: pointer;
-							background: #5755d9 !important;
-							color #fff !important;
-						}
+					&:hover {
+						cursor: pointer;
+						background: #fff !important;
+						color #5755d9 !important;
 					}
-
-					&:nth-child(2) {
-                    	background: #5755d9 !important;
-						color: #fff;
-					
-						&:hover {
-							cursor: pointer;
-							background: #fff !important;
-							color #5755d9 !important;
-						}
-
-					}
-
-                }
-            }
+				}
+			}
         }
     }
 `;
 
-export default class extends Component {
-    constructor(props) {
-        super(props);
-        // Set the initial input values
-        this.state = {
-            currentStep: 2,
-            states: "",
-            fields: { states: "" },
-            errors: {},
-            formIsValid: true,
-        };
-        // Bind the submission to handleChange()
-        this.onClick = this.onClick.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
-    }
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+    <div>
+        {/* <label>{label}</label> */}
+        <div>
+            <input {...input} placeholder={label} type={type} />
+            {touched && error && <span>{error}</span>}
+        </div>
+    </div>
+);
 
-    // Use the submitted data to set the state
-    handleChange(field, e) {
-        let fields = this.state.fields;
-        fields[field] = e.target.value;
-        this.setState({ fields });
-        this.setState({ states: e.target.value });
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-    };
-
-    onClick = () => {
-        // console.log(this.state.states);
-        this.handleValidation();
-    };
-
-    handleValidation() {
-        let fields = this.state.fields;
-        let errors = {};
-
-        // console.log(fields["states"].length);
-        console.log(fields["states"]);
-        // console.log(fields);
-
-        if (fields["states"] === "" || fields["states"].length === 0) {
-            this.setState({ formIsValid: false });
-            errors["states"] = "State is required";
-            console.log("a route");
-        } else {
-            this._next();
-            console.log("b route");
-        }
-
-        this.setState({ errors: errors });
-    }
-
-    _next() {
-        window.location = "/step3";
-    }
-
-    _prev() {
-        window.location = "/steps";
-    }
-
-    // The "next" and "previous" button functions
-    get previousButton() {
-        let currentStep = this.state.currentStep;
-        // If the current step is not 1, then render the "previous" button
-        if (currentStep !== 1) {
-            return (
-                <button
-                    className="btn btn-secondary"
-                    type="button"
-                    onClick={this._prev}
-                >
-                    Previous
-                </button>
-            );
-        }
-        // ...else return nothing
-        return null;
-    }
-
-    get nextButton() {
-        let currentStep = this.state.currentStep;
-        // If the current step is not 3, then render the "next" button
-        // if (currentStep) {
-        return (
-            <button
-                className="btn btn-primary float-right"
-                type="button"
-                onClick={this.onClick}
-            >
-                Next
-            </button>
-        );
-        // }
-        // ...else render nothing
-        return null;
-    }
-
-    // Render UI will go here...
-    render() {
-        return (
-            <React.Fragment>
-                <Step>
+const Steps2 = (props) => {
+    const { handleSubmit, previousPage } = props;
+    return (
+        <Step>
+            <div>
+                <h1>What state is the property in?</h1>
+                <Form onSubmit={handleSubmit}>
+                    <Field name="favoriteColor" component="select">
+                        <option></option>
+                        <option value="#ff0000">Red</option>
+                        <option value="#00ff00">Green</option>
+                        <option value="#0000ff">Blue</option>
+                    </Field>
                     <div>
-                        {/* <p>Step {this.state.currentStep}</p> */}
-                        <form>
-                            <h1>What state is the property in?</h1>
-                            <div>
-                                <select
-                                    name="state"
-                                    className="form-select"
-                                    required=""
-                                    onChange={this.handleChange.bind(
-                                        this,
-                                        "states"
-                                    )}
-                                    value={this.state.fields["states"]}
-                                >
-                                    <option value="">Choose an option</option>
-                                    <option value="AL">Alabama</option>
-                                    <option value="AK">Alaska</option>
-                                    <option value="AZ">Arizona</option>
-                                    <option value="AR">Arkansas</option>
-                                    <option value="CA">California</option>
-                                    <option value="CO">Colorado</option>
-                                    <option value="CT">Connecticut</option>
-                                    <option value="DE">Delaware</option>
-                                    <option value="DC">
-                                        District Of Columbia
-                                    </option>
-                                    <option value="FL">Florida</option>
-                                    <option value="GA">Georgia</option>
-                                    <option value="HI">Hawaii</option>
-                                    <option value="ID">Idaho</option>
-                                    <option value="IL">Illinois</option>
-                                    <option value="IN">Indiana</option>
-                                    <option value="IA">Iowa</option>
-                                    <option value="KS">Kansas</option>
-                                    <option value="KY">Kentucky</option>
-                                    <option value="LA">Louisiana</option>
-                                    <option value="ME">Maine</option>
-                                    <option value="MD">Maryland</option>
-                                    <option value="MA">Massachusetts</option>
-                                    <option value="MI">Michigan</option>
-                                    <option value="MN">Minnesota</option>
-                                    <option value="MS">Mississippi</option>
-                                    <option value="MO">Missouri</option>
-                                    <option value="MT">Montana</option>
-                                    <option value="NE">Nebraska</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="NH">New Hampshire</option>
-                                    <option value="NJ">New Jersey</option>
-                                    <option value="NM">New Mexico</option>
-                                    <option value="NY">New York</option>
-                                    <option value="NC">North Carolina</option>
-                                    <option value="ND">North Dakota</option>
-                                    <option value="OH">Ohio</option>
-                                    <option value="OK">Oklahoma</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="PA">Pennsylvania</option>
-                                    <option value="RI">Rhode Island</option>
-                                    <option value="SC">South Carolina</option>
-                                    <option value="SD">South Dakota</option>
-                                    <option value="TN">Tennessee</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="UT">Utah</option>
-                                    <option value="VT">Vermont</option>
-                                    <option value="VA">Virginia</option>
-                                    <option value="WA">Washington</option>
-                                    <option value="WV">West Virginia</option>
-                                    <option value="WI">Wisconsin</option>
-                                    <option value="WY">Wyoming</option>
-                                </select>
-                                <span style={{ color: "red" }}>
-                                    {this.state.errors["states"]}
-                                </span>
-                            </div>
-                            <div>
-                                {this.previousButton}
-                                {this.nextButton}
-                            </div>
-                        </form>
+                        <button
+                            type="button"
+                            className="previous"
+                            onClick={previousPage}
+                        >
+                            Previous
+                        </button>
                     </div>
-                </Step>
-            </React.Fragment>
-        );
-    }
-}
+                    <div>
+                        <button type="submit" className="next">
+                            Next
+                        </button>
+                    </div>
+                </Form>
+            </div>
+        </Step>
+    );
+};
+
+export default reduxForm({
+    form: "form", //                 <------ same form name
+    destroyOnUnmount: false, //        <------ preserve form data
+    forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
+    validate,
+})(Steps2);
+
+// class Steps2 extends Component {
+//     constructor(props) {
+//         super(props);
+
+//         this.state = {
+//             currentStep: 1,
+//             name: "",
+//             fields: { name: "" },
+//             errors: {},
+//             formIsValid: true,
+//         };
+
+//         this.onClick = this.onClick.bind(this);
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleValidation = this.handleValidation.bind(this);
+//     }
+
+//     handleChange(field, e) {
+//         let fields = this.state.fields;
+//         fields[field] = e.target.value;
+//         this.setState({ fields });
+//         this.setState({ name: e.target.value });
+//     }
+
+//     handleValidation() {
+//         let fields = this.state.fields;
+//         let errors = {};
+
+//         console.log(this.state.fields["name"]);
+
+//         //Name
+//         if (
+//             fields["name"] === "" ||
+//             fields["name"].length === 0 ||
+//             typeof fields["name"] === "undefined"
+//         ) {
+//             this.setState({ formIsValid: false });
+//             errors["name"] = "Name is required";
+//             console.log("a route");
+//         } else {
+//             this._next();
+//             console.log("b route");
+//         }
+
+//         this.setState({ errors: errors });
+//     }
+
+//     onClick = () => {
+//         this.handleValidation();
+//         // console.log(this.state.name);
+
+//         // if (this.state.formIsValid === false) {
+//         //     console.log("wroong");
+//         // } else {
+//         //     this._next();
+//         // }
+//     };
+
+//     _next() {
+//         // const fullName = this.state.fields["name"];
+
+//         window.location = "/step2";
+//     }
+
+//     get nextButton() {
+//         return (
+//             <button type="button" onClick={this.onClick}>
+//                 Next
+//             </button>
+//         );
+//     }
+
+//     componentWillMount() {
+//         // console.log(this.state.currentStep);
+//     }
+
+//     render() {
+//         return (
+//             <React.Fragment>
+//                 <Step>
+//                     <div>
+//                         {/* <p>Step {this.state.currentStep}</p> */}
+
+//                         <form onSubmit={handleSubmit}>
+//                             <h1>What is your name?</h1>
+//                             <Field
+//                                 name="firstName"
+//                                 type="text"
+//                                 component={renderField}
+//                                 label="First Name"
+//                             />
+//                             <Field
+//                                 name="lastName"
+//                                 type="text"
+//                                 component={renderField}
+//                                 label="Last Name"
+//                             />
+//                             <div>
+//                                 <button type="submit" className="next">
+//                                     Next
+//                                 </button>
+//                             </div>
+//                         </form>
+
+//                         {/* <form>
+//                             <h1>What is your name?</h1>
+//                             <div>
+//                                 <input
+//                                     type="text"
+//                                     size="30"
+//                                     placeholder="Name"
+//                                     onChange={this.handleChange.bind(
+//                                         this,
+//                                         "name"
+//                                     )}
+//                                     value={this.state.fields["name"]}
+//                                 />
+//                                 <span style={{ color: "red" }}>
+//                                     {this.state.errors["name"]}
+//                                 </span>
+//                                 <div>
+//                                     {this.previousButton}
+//                                     {this.nextButton}
+//                                 </div>
+//                             </div>
+//                         </form> */}
+//                     </div>
+//                 </Step>
+//             </React.Fragment>
+//         );
+//     }
+// }
